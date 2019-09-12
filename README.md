@@ -32,8 +32,6 @@ In order to build and test applications on your local workstation, complete the 
 
 * [Install Docker](https://docs.docker.com/get-started/)
 
-* [Install Maven](https://maven.apache.org/download.cgi) and [OpenJDK 8](https://adoptopenjdk.net/) or an equivalent JVM (these are needed by the Spring Boot stack)
-
 In order to deploy the applications to the IBM Cloud Kubernetes Service, complete the following steps.
 
 * [Install the CLIs to manage a cluster](https://cloud.ibm.com/docs/containers?topic=containers-cs_cli_install#cs_cli_install_steps)
@@ -87,7 +85,7 @@ $ appsody run
 ```
 
 Appsody builds a containerized version of the application for you and runs it in Docker.
-You can enter (http://localhost:3000) in a browser to see the default endpoint served by the application.
+You can enter http://localhost:3000 in a browser to see the default endpoint served by the application.
 
 The Node.js Express stack also provides out-of-the-box health checking and application metrics endpoints
 and a performance monitoring and analysis dashboard (which is only present in this development container and not the production container which we'll build later).
@@ -156,7 +154,7 @@ $ appsody run
 ```
 
 Appsody builds a containerized version of the application for you and runs it in Docker.
-You can enter (http://localhost:8080) in a browser to see the default endpoint served by the application.
+You can enter http://localhost:8080 in a browser to see the default endpoint served by the application.
 
 The Spring Boot 2 stack also provides out-of-the-box health checking and application metrics endpoints.
 
@@ -241,8 +239,7 @@ spec:
   # Add fields here
   version: 1.0.0
   applicationImage: quote-backend
-<b>
-  env:
+  <b>env:
     - name: dacadoo_url
       valueFrom:
         secretKeyRef:
@@ -252,8 +249,7 @@ spec:
       valueFrom:
         secretKeyRef:
           name: dacadoo-secret 
-          key: apikey
-</b>
+          key: apikey</b>
   .
   .
   .
@@ -293,9 +289,7 @@ spec:
   # Add fields here
   version: 1.0.0
   applicationImage: quote-backend
-<b>
-  pullSecret: default-us-icr-io
-</b>
+  <b>pullSecret: default-us-icr-io</b>
   env:
     - name: dacadoo_url
       valueFrom:
@@ -370,12 +364,10 @@ spec:
   # Add fields here
   version: 1.0.0
   applicationImage: quote-frontend
-<b>
-  pullSecret: default-us-icr-io
+  <b>pullSecret: default-us-icr-io
   env:
   - name: BACKEND_URL
-    value: http://quote-backend:8080/quote
-</b>
+    value: http://quote-backend:8080/quote</b>
   .
   .
   .
