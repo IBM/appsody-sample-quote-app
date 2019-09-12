@@ -87,16 +87,16 @@ $ appsody run
 ```
 
 Appsody builds a containerized version of the application for you and runs it in Docker.
-You can enter `http://localhost:3000` in a browser to see the default endpoint served by the application.
+You can enter (http://localhost:3000) in a browser to see the default endpoint served by the application.
 
 The Node.js Express stack also provides out-of-the-box health checking and application metrics endpoints
 and a performance monitoring and analysis dashboard (which is only present in this development container and not the production container which we'll build later).
 
-    - Health endpoint: http://localhost:3000/health
-    - Liveness endpoint: http://localhost:3000/live
-    - Readiness endpoint: http://localhost:3000/ready
-    - Metrics endpoint: http://localhost:3000/metrics
-    - Dashboard endpoint: http://localhost:3000/appmetrics-dash (development only)
+- Health endpoint: http://localhost:3000/health
+- Liveness endpoint: http://localhost:3000/live
+- Readiness endpoint: http://localhost:3000/ready
+- Metrics endpoint: http://localhost:3000/metrics
+- Dashboard endpoint: http://localhost:3000/appmetrics-dash (development only)
 
 While the containerized application is running you can edit the application and your changes will be reflected in the running container.
 You can test this by editing the app.js module and changing the message returned by the default endpoint.
@@ -156,14 +156,14 @@ $ appsody run
 ```
 
 Appsody builds a containerized version of the application for you and runs it in Docker.
-You can enter `http://localhost:8080` in a browser to see the default endpoint served by the application.
+You can enter (http://localhost:8080) in a browser to see the default endpoint served by the application.
 
 The Spring Boot 2 stack also provides out-of-the-box health checking and application metrics endpoints.
 
-    - Health endpoint: http://localhost:8080/actuator/health
-    - Liveness endpoint: http://localhost:8080/actuator/liveness
-    - Metrics endpoint: http://localhost:8080/actuator/metrics
-    - Prometheus endpoint: http://localhost:8080/actuator/prometheus
+- Health endpoint: http://localhost:8080/actuator/health
+- Liveness endpoint: http://localhost:8080/actuator/liveness
+- Metrics endpoint: http://localhost:8080/actuator/metrics
+- Prometheus endpoint: http://localhost:8080/actuator/prometheus
 
 We're going to replace the starter code with the insurance quote backend application.
 Edit the pom.xml file and add the following dependency to the dependencies section.
