@@ -136,7 +136,7 @@ In this case the frontend application is not sending a request to the backend ap
 Instead it is configured to use a mock endpoint for testing purposes in development mode.
 This works as follows.
 
-* `quote.js` uses the [config](https://www.npmjs.com/package/config) module to obtain the backend URL.
+* `quote.js` uses the [config](https://www.npmjs.com/package/config) module to get the value for the backend URL.
 * When the application runs in development mode, the config module uses `config/development.json` to find the value for the backend URL.
 This file sets the URL to the mock endpoint.
     ```
@@ -145,7 +145,7 @@ This file sets the URL to the mock endpoint.
     }
     ```
 * When the application runs in production mode (which we'll see later), the config module uses `config/custom-environment-variables.json` to find the value for the backend URL.
-This file sets the URL from an environment variable.
+This file sets the URL from the `BACKEND_URL` environment variable.
     ```
     {
       "backendUrl": "BACKEND_URL"
@@ -206,7 +206,16 @@ curl -X POST  -d @backend-input.json  -H "Content-Type: application/json"  http:
 
 In this case the backend application is not sending a request to the Dacadoo health score API.
 Instead it is configured to use a mock endpoint for testing purposes in development mode.
-We'll take a deeper look at this later in the README.
+This works as follows:
+
+* `src/main/java/application/Quote.java` uses `@Value("${DACADOO_URL}")` and `@Value("${DACADOO_APIKEY}")` to get the values of the Dacadoo Health Score API endpoint URL and the API key.
+* `src/main/resources/application.yaml` defines mock values for the URL and API key.
+    ```
+    DACADOO_URL: http://localhost:8080/mockscore
+    DACADOO_APIKEY: TEST
+    ```
+* When the application runs in production mode (which we'll see later), environment variables can be used to set the URL and API key.
+Environment variables override the values in the `application.yaml` file.
 
 ### 4. Deploy the backend application to the IBM Cloud
 
