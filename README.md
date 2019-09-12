@@ -16,7 +16,7 @@ When you have completed this code pattern, you will understand how to
 * deploy the applications to the IBM Cloud Kubernetes Service
 
 <!--add an image in this path-->
-<!-- ![architecture](doc/source/images/architecture.png) -->
+![architecture](doc/source/images/architecture.png)
 
 ## Flow
 
