@@ -134,7 +134,21 @@ You will see a form appear.
 You can fill in the form and hit the button to submit it and a response will appear.
 In this case the frontend application is not sending a request to the backend application.
 Instead it is configured to use a mock endpoint for testing purposes in development mode.
-We'll take a deeper look at this later in the README.
+This works as follows.
+
+* `quote.js` uses the [config](https://www.npmjs.com/package/config) module to obtain the backend URL.
+* When the application runs in development mode, the config module uses `config/development.json` to find the value for the backend URL.
+This file sets the URL to the mock endpoint.
+```
+{
+  "backendUrl": "http://localhost:3000/quote/test"
+}
+```
+* When the application runs in production mode (which we'll see later), the config module uses `config/custom-environment-variables.json` to find the value for the backend URL.
+This file sets the URL from an environment variable.
+{
+  "backendUrl": "BACKEND_URL"
+}
 
 ### 3. Create the backend application and run it
 
