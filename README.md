@@ -152,6 +152,16 @@ This file sets the URL from the `BACKEND_URL` environment variable.
     }
     ```
 
+Appsody provides a way to run automated tests against the containerized application.
+
+```
+$ appsody test
+```
+
+This runs tests that come packaged with the stack (such as tests of the health and metrics endpoints),
+and of course you can add your own tests of your application as well.
+Look at `test/test.js` to see the tests for the frontend application.
+
 ### 3. Create the backend application and run it
 
 The backend application is written in Spring Boot.  Let's initialize an Appsody project that uses the Spring Boot 2 stack.
@@ -217,6 +227,14 @@ This works as follows:
 * When the application runs in production mode (which we'll see later), environment variables can be used to set the URL and API key.
 Environment variables override the values in the `application.yaml` file.
 
+You can use `appsody test` to run automated tests for this application.
+
+```
+$ appsody test
+```
+
+Look at `src/test/java/application/QuoteTest.java` to see the tests for the backend application.
+
 ### 4. Deploy the backend application to the IBM Cloud
 
 We are now going to deploy both applications to the IBM Cloud Kubernetes Service starting with the backend application.
@@ -229,6 +247,7 @@ We will use the `appsody deploy` command for the deployments.  This command
 
 In order to have the backend application sends requests to the Dacadoo Health Score API,
 we need to create a secret that contains the configuration for making requests to the Dacadoo server.
+(Note: If you do not want to use the Dacadoo Health Score API, you can skip this setup and continue to use the mock endpoint.)
 
 ```
 kubectl create secret generic dacadoo-secret --from-literal=url=<url> --from-literal=apikey=<apikey>
