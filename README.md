@@ -198,7 +198,7 @@ We are now going to deploy both applications to the IBM Cloud Kubernetes Service
 
 We will use the `appsody deploy` command for the deployments.  This command
 * builds a deployment image for production usage (i.e. it does not include development-mode tools)
-* pushes the image to your designated image repository
+* pushes the image to your designated image registry
 * builds a deployment yaml file
 * applies the yaml file to your Kubernetes cluster
 
@@ -322,18 +322,18 @@ $ appsody deploy -t <your image registry>/<your namespace>/quote-backend:1 --pus
 ```
 
 where
-* <your image registry> is the host name of your regional registry, for example `us.icr.io`
-* <your namespace> is a namespace you created in your registry
+* `<your image registry>` is the host name of your regional registry, for example `us.icr.io`
+* `<your namespace>` is a namespace you created in your registry
 
-After the deployment completes, you can test the service again using curl.
+After the deployment completes, you can test the service using curl.
 
 ```
 curl -X POST  -d @backend-input.json  -H "Content-Type: application/json"  http://<node IP address>:<node port>/quote
 ```
 
 where
-* <node IP address> is the external IP address of your node which you can obtain using the command `kubectl get node -o wide`
-* <node port> is the node port assigned to the service which you can obtain using the command `kubectl get svc quote-backend`
+* `<node IP address>` is the external IP address of your node which you can obtain using the command `kubectl get node -o wide`
+* `<node port>` is the node port assigned to the service which you can obtain using the command `kubectl get svc quote-backend`
 
 Note that because we are using a free Kubernetes cluster, the AppsodyApplication is limited to exposing the service via a node port.
 If you use a standard cluster with Knative installed, or a Red Hat OpenShift on IBM Cloud cluster, you have the option to expose the service via
@@ -380,8 +380,8 @@ $ appsody deploy -t <your image registry>/<your namespace>/quote-frontend:1 --pu
 ```
 
 where
-* <your image registry> is the host name of your regional registry, for example `us.icr.io`
-* <your namespace> is a namespace you created in your registry
+* `<your image registry>` is the host name of your regional registry, for example `us.icr.io`
+* `<your namespace>` is a namespace you created in your registry
 
 After the deployment completes, use a browser to open the frontend application.
 Use `http://<node IP address>:<nodeport>` where
