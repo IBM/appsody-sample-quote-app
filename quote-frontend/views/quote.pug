@@ -1,0 +1,64 @@
+html
+  head
+    title CloudCo Insurance
+
+  body
+    h1 Get a Free Quote
+    br
+    p Complete this form to obtain a quote for $200,000 of life insurance coverage.
+
+    if errors
+      p(style="color:red") #{errors[0].msg}
+
+    form(action = "/quote", method = "POST")
+      div
+        label(for="age") Age:
+        input(name="age" type="number" value=age)
+      br
+      div
+        label(for="weight") Weight:
+        input(name="weight" type="number" value=weight)
+        label(for="weight") pounds
+      br
+      div
+        label(for="feet") Height:
+        input(name="feet" type="number" value=feet)
+        label(for="feet") feet
+        input(name="inches" type="number" value=inches)
+        label(for="inches") inches
+      br
+      p Gender:
+      div
+        input(id="male" name="gender" type="radio" value="male" checked=(gender === 'male'))
+        label(for="male") Male
+        input(id="female" name="gender" type="radio" value="female" checked=(gender === 'female'))
+        label(for="female") Female
+      br
+      p Are you a smoker?
+      div
+        input(id="currentsmoker" name="smoker" type="radio" value="current" checked=(smoker === 'current'))
+        label(for="currentsmoker") Yes
+      div
+        input(id="formersmoker" name="smoker" type="radio" value="former" checked=(smoker === 'former'))
+        label(for="formersmoker") Not smoking now but did smoke in the past
+      div
+        input(id="neversmoker" name="smoker" type="radio" value="never" checked=(smoker === 'never'))
+        label(for="neversmoker") Never smoked
+      br
+      p Have you been diagnosed with any of the following conditions?
+      div
+        input(id="cancer" name="cancer" type="checkbox" value="true" checked=(cancer === 'true'))
+        label(for="cancer") Cancer
+      div
+        input(id="cvd" name="cvd" type="checkbox" value="true" checked=(cvd === 'true'))
+        label(for="cvd") Cardiovascular disease 
+      br
+      br
+      button(type="submit") Request quote
+
+    div
+    if quotedAmount
+      if quotedAmount < 0
+        p We are unable to provide a quote at this time.
+      else
+        p Your quote is $#{quotedAmount} per month
