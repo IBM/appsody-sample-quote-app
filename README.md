@@ -1,4 +1,4 @@
-<!-- [![Build Status](https://travis-ci.org/IBM/appsody-sample-quote-app.svg?branch=master)](https://travis-ci.org/IBM/appsody-sample-quote-app) -->
+[![Build Status](https://travis-ci.org/IBM/appsody-sample-quote-app.svg?branch=master)](https://travis-ci.org/IBM/appsody-sample-quote-app)
 
 # Creating an insurance quote application using Appsody
 
