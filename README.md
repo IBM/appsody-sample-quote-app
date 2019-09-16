@@ -45,8 +45,8 @@ In order to use the Dacadoo Health Score API, visit https://models.dacadoo.com/d
 # Steps
 
 1. [Clone the repo](#1-clone-the-repo).
-2. [Create the frontend application and run it](#2-create-the-frontend-application-and-run-it)
-3. [Create the backend application and run it](#3-create-the-backend-application-and-run-it)
+2. [Create the frontend application and run it locally](#2-create-the-frontend-application-and-run-it-locally)
+3. [Create the backend application and run it locally](#3-create-the-backend-application-and-run-it-locally)
 4. [Deploy the backend application to the IBM Cloud](#4-deploy-the-backend-application-to-the-IBM-Cloud)
 5. [Deploy the frontend application to the IBM Cloud](#5-deploy-the-frontend-application-to-the-IBM-Cloud)
 
@@ -58,7 +58,7 @@ Clone the `appsody-sample-quote-app` repo locally. In a terminal, run:
 git clone https://github.com/IBM/appsody-sample-quote-app
 ```
 
-### 2. Create the frontend application and run it
+### 2. Create the frontend application and run it locally
 
 The frontend application is written in Node.js Express.  First let's initialize an Appsody project that uses the Node.js Express stack.
 
@@ -162,7 +162,7 @@ This runs tests that come packaged with the stack (such as tests of the health a
 and of course you can add your own tests of your application as well.
 Look at `test/test.js` to see the tests for the frontend application.
 
-### 3. Create the backend application and run it
+### 3. Create the backend application and run it locally
 
 The backend application is written in Spring Boot.  Let's initialize an Appsody project that uses the Spring Boot 2 stack.
 
