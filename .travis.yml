@@ -1,0 +1,42 @@
+language: minimal
+
+os: linux
+dist: xenial
+
+services:
+  - docker
+
+before_install:
+ - sudo apt-get install -y jq
+
+install:
+ # Download the latest appsody release.  github.com/appsody/appsody/releases/latest redirects to the latest tag.  Use the tag to download the deb file.
+ - appsodyrel=`curl -s -L https://github.com/appsody/appsody/releases/latest -o/dev/null -w '%{url_effective}'`
+ - wget https://github.com/appsody/appsody/releases/download/$(basename $appsodyrel)/appsody_$(basename $appsodyrel)_amd64.deb
+ - sudo dpkg -i appsody_$(basename $appsodyrel)_amd64.deb
+
+script:
+ # Initialize frontend project
+ - mkdir quote-frontend-project
+ - cd quote-frontend-project
+ - appsody init nodejs-express
+ # Use jq to add dependencies to package.json
+ - jq -s ".[0] * .[1]" package.json ../ci/package-add.json >package.json.tmp && mv package.json.tmp package.json
+ # Copy files from git into the project
+ - cp -rf ../quote-frontend/* .
+ # Run unit tests
+ - appsody test
+ # Exit project
+ - cd ..
+ #
+ # Initialize backend project
+ - mkdir quote-backend-project
+ - cd quote-backend-project
+ - appsody init java-spring-boot2
+ # Use sed to add dependencies to pom.xml
+ - pomadd=`cat ../ci/pom-add.xml | tr '\n' ' '`
+ - sed 's@<dependencies>@<dependencies>\n'"$pomadd"'@g' pom.xml >pom.xml.tmp && mv pom.xml.tmp pom.xml
+ # Copy files from git into the project
+ - cp -rf ../quote-backend/* .
+ # Run unit tests
+ - appsody test 
