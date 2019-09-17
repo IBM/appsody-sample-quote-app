@@ -41,6 +41,9 @@ In order to deploy the applications to the IBM Cloud Kubernetes Service, complet
 * [Create a private container registry in IBM Cloud Container Registry](https://cloud.ibm.com/docs/services/Registry?topic=registry-registry_setup_cli_namespace#registry_setup_cli_namespace)
 
 In order to use the Dacadoo Health Score API, visit https://models.dacadoo.com/doc/ to request an API key for evaluation purposes.
+Access to this API is granted individually to insurance professionals.
+There is a mock implementation of the API in this code pattern that you can use if you do not want to register.
+
 
 # Steps
 
@@ -160,7 +163,7 @@ $ appsody test
 
 This runs tests that come packaged with the stack (such as tests of the health and metrics endpoints),
 and of course you can add your own tests of your application as well.
-Look at `test/test.js` to see the tests for the frontend application.
+Look at [test/test.js](test/test.js) to see the tests for the frontend application.
 
 ### 3. Create the backend application and run it locally
 
@@ -233,7 +236,7 @@ You can use `appsody test` to run automated tests for this application.
 $ appsody test
 ```
 
-Look at `src/test/java/application/QuoteTest.java` to see the tests for the backend application.
+Look at [src/test/java/application/QuoteTests.java](src/test/java/application/QuoteTests.java) to see the tests for the backend application.
 
 ### 4. Deploy the backend application to the IBM Cloud
 
@@ -389,8 +392,10 @@ We are now going to deploy the frontend application to the IBM Cloud Kubernetes 
 The steps are similar to what we did for the backend application.
 
 First we need to generate the deployment yaml so that we can edit it.
+Change the current directory back to the frontend application and generate the deployment yaml.
 
 ```
+cd ../quote-frontend
 appsody deploy --generate-only
 ```
 
@@ -430,7 +435,7 @@ where
 After the deployment completes, use a browser to open the frontend application.
 Use `http://<node IP address>:<nodeport>` where
 * <node IP address> is the external IP address of your node which you can obtain using the command `kubectl get node -o wide`
-* <node port> is the node port assigned to the service which you can obtain using the command `kubectl get svc quote-backend`
+* <node port> is the node port assigned to the service which you can obtain using the command `kubectl get svc quote-frontend`
 
 Fill in the form and click the button to submit it.
 You should get a quote from the backend application.
