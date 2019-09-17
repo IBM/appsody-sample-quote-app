@@ -163,7 +163,7 @@ $ appsody test
 
 This runs tests that come packaged with the stack (such as tests of the health and metrics endpoints),
 and of course you can add your own tests of your application as well.
-Look at [test/test.js](test/test.js) to see the tests for the frontend application.
+Look at [quote-frontend/test/test.js](quote-frontend/test/test.js) to see the tests for the frontend application.
 
 ### 3. Create the backend application and run it locally
 
@@ -236,7 +236,7 @@ You can use `appsody test` to run automated tests for this application.
 $ appsody test
 ```
 
-Look at [src/test/java/application/QuoteTests.java](src/test/java/application/QuoteTests.java) to see the tests for the backend application.
+Look at [quote-backend/src/test/java/application/QuoteTests.java](quote-backend/src/test/java/application/QuoteTests.java) to see the tests for the backend application.
 
 ### 4. Deploy the backend application to the IBM Cloud
 
