@@ -25,10 +25,10 @@ public class QuoteTests {
         request.setGender("male");
         request.setSmoker("former");
         request.setWeight(54.42);
-        request.setHeight(1.6603);
+        request.setHeight(176.03);
         // Invoke the assessment endpoint and check the quoted amount based on the mocked health score response.
         ResponseEntity<QuoteResponse> responseEntity = this.restTemplate.postForEntity("/quote", request, QuoteResponse.class);
-        assertEquals("Incorrect quote returned", 30, responseEntity.getBody().getQuotedAmount());
+        assertEquals("Incorrect quote returned", 50, responseEntity.getBody().getQuotedAmount());
   }
 
 }
