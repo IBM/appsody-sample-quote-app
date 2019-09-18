@@ -221,7 +221,7 @@ Issue the `curl` command from the `quote-backend` directory.
 
 ```
 $ curl -X POST  -d @backend-input.json  -H "Content-Type: application/json"  http://localhost:8080/quote
-{"quotedAmount":30}
+{"quotedAmount":30,"basis":"mocked backend computation"}
 ```
 
 In this case the backend application is not sending a request to the Dacadoo health score API.
@@ -385,12 +385,15 @@ After the deployment completes, you can test the service using curl.
 
 ```
 $ curl -X POST  -d @backend-input.json  -H "Content-Type: application/json"  http://<node IP address>:<node port>/quote
-{"quotedAmount":70}
+{"quotedAmount":70,"basis":"Dacadoo Health Score API"}
 ```
 
 where
 * `<node IP address>` is the external IP address of your node which you can obtain using the command `kubectl get node -o wide`
 * `<node port>` is the node port assigned to the service which you can obtain using the command `kubectl get svc quote-backend`
+
+Note: If you are not using the Dacadoo Health Score API, you may see different text for the value of "basis"
+("mocked backend computation" instead of "Dacadoo Health Score API").
 
 Note that because we are using a free Kubernetes cluster, the AppsodyApplication is limited to exposing the service via a node port.
 If you use a standard cluster with Knative installed, or a Red Hat OpenShift on IBM Cloud cluster, you have the option to expose the service via
