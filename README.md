@@ -64,6 +64,7 @@ git clone https://github.com/IBM/appsody-sample-quote-app
 ### 2. Create the frontend application and run it locally
 
 The frontend application is written in Node.js Express.  First let's initialize an Appsody project that uses the Node.js Express stack.
+Create a directory somewhere outside where you cloned this project and run the `appsody init` command shown below.
 
 ```bash
 $ mkdir quote-frontend
@@ -88,7 +89,7 @@ $ appsody run
 ```
 
 Appsody builds a containerized version of the application for you and runs it in Docker.
-You can enter http://localhost:3000 in a browser to see the default endpoint served by the application.
+You can enter `http://localhost:3000` in a browser to see the default endpoint served by the application.
 
 The Node.js Express stack also provides out-of-the-box health checking and application metrics endpoints
 and a performance monitoring and analysis dashboard (which is only present in this development container and not the production container which we'll build later).
@@ -102,7 +103,7 @@ and a performance monitoring and analysis dashboard (which is only present in th
 While the containerized application is running you can edit the application and your changes will be reflected in the running container.
 You can test this by editing the app.js module and changing the message returned by the default endpoint.
 Watch the `appsody run` console session for the application to restart.
-Then refresh your browser window and you will see the new message.
+Then re-enter `http://localhost:3000` in your browser and you will see the new message.
 
 We're going to replace the starter code with the insurance quote frontend application.
 First you must edit the package.json file and add the following dependencies:
@@ -155,6 +156,8 @@ This file sets the URL from the `BACKEND_URL` environment variable.
     }
     ```
 
+Press `Ctrl-C` in the window where the application is running to stop it.
+
 Appsody provides a way to run automated tests against the containerized application.
 
 ```
@@ -183,7 +186,7 @@ $ appsody run
 ```
 
 Appsody builds a containerized version of the application for you and runs it in Docker.
-You can enter http://localhost:8080 in a browser to see the default endpoint served by the application.
+You can enter `http://localhost:8080` in a browser to see the default endpoint served by the application.
 
 The Spring Boot 2 stack also provides out-of-the-box health checking and application metrics endpoints.
 
@@ -212,9 +215,12 @@ Now copy the files from the `quote-backend` directory in this git repo to your A
 Watch for the container to restart.
 
 You can test the backend API using [curl](https://curl.haxx.se/download.html).
+The file [quote-backend/backend-input.json](quote-backend/backend-input.json) contains sample input for the API.
+Issue the `curl` command from the `quote-backend` directory.
 
 ```
-curl -X POST  -d @backend-input.json  -H "Content-Type: application/json"  http://localhost:8080/quote
+$ curl -X POST  -d @backend-input.json  -H "Content-Type: application/json"  http://localhost:8080/quote
+{"quotedAmount":30}
 ```
 
 In this case the backend application is not sending a request to the Dacadoo health score API.
@@ -229,6 +235,8 @@ This works as follows:
     ```
 * When the application runs in production mode (which we'll see later), environment variables can be used to set the URL and API key.
 Environment variables override the values in the `application.yaml` file.
+
+Press `Ctrl-C` in the window where the application is running to stop it.
 
 You can use `appsody test` to run automated tests for this application.
 
@@ -375,7 +383,8 @@ where
 After the deployment completes, you can test the service using curl.
 
 ```
-curl -X POST  -d @backend-input.json  -H "Content-Type: application/json"  http://<node IP address>:<node port>/quote
+$ curl -X POST  -d @backend-input.json  -H "Content-Type: application/json"  http://<node IP address>:<node port>/quote
+{"quotedAmount":70}
 ```
 
 where
