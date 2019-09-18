@@ -11,4 +11,7 @@ public class QuoteResponse {
     @JsonProperty
     private int quotedAmount;
 
+    @JsonProperty
+    private String basis;
+
 }

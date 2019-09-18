@@ -42,6 +42,7 @@ router.post('/',
     // Call backend API
     console.log("Calling backend API at " + backendUrl);
     var theQuote = -1;
+    var theBasis = "";
     request.post({
       "url": backendUrl,
       "json": true,
@@ -54,17 +55,19 @@ router.post('/',
       } else {
         console.log("Success", body);
         theQuote = body.quotedAmount;
+        theBasis = body.basis;
       }
       // Redisplay form with form inputs and quoted value.
       var result = req.body;
       result.quotedAmount = theQuote;
+      result.basis = theBasis;
       res.render('quote', result);
     });
 });
 
 // Scaffold backend api for development testing
 router.post('/test', function(req,res) {
-  res.json({ "quotedAmount": 123 });
+  res.json({ "quotedAmount": 123, "basis": "mocked frontend computation" });
 });
 
 //export this router to use in app.js

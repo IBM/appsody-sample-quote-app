@@ -59,6 +59,8 @@ html
     div
     if quotedAmount
       if quotedAmount < 0
-        p We are unable to provide a quote at this time.
+        | We are unable to provide a quote at this time.
       else
-        p Your quote is $#{quotedAmount} per month
+        | Your quote is $#{quotedAmount} per month
+        if basis
+          |  (determined using #{basis})

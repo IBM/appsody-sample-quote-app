@@ -59,18 +59,29 @@ public class Quote {
         hs.setClip(true);
 
         logger.info("Calling dacadoo health score API (" + dacadooUrl + "): " + hs.toString());
-        
+
         // Invoke dacadoo health score api
-        
+
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("X-dacadoo-Key", dacadooApikey);      
-        HttpEntity<HealthScoreRequest> hsRequest = new HttpEntity<>(hs, headers);
-        ResponseEntity<HealthScoreResponse> hsResponse = restTemplate.exchange(dacadooUrl, HttpMethod.POST, hsRequest, HealthScoreResponse.class);
-        
-        HttpStatus httpCode = hsResponse.getStatusCode();        
-        int score = (httpCode.equals(HttpStatus.OK) ? hsResponse.getBody().getScr() : -1);
-        logger.info("API response code - " + httpCode + " score - " + score);
+        HttpEntity<HealthScoreRequest> hsRequestEntity = new HttpEntity<>(hs, headers);
+        ResponseEntity<HealthScoreResponse> hsResponseEntity = restTemplate.exchange(dacadooUrl, HttpMethod.POST, hsRequestEntity, HealthScoreResponse.class);
+
+        int score = -1;
+        String basis = "";
+        HttpStatus httpCode = hsResponseEntity.getStatusCode();
+        if (httpCode.equals(HttpStatus.OK)) {
+            HealthScoreResponse hsResponse = hsResponseEntity.getBody();
+            score = hsResponse.getScr();
+            if (hsResponse.getSubscores() != null) {
+                basis = "Dacadoo Health Score API";
+            } else {
+                basis = "mocked backend computation";
+            }
+        }
+
+        logger.info("API response code - " + httpCode + " score - " + score + " basis - " + basis);
 
         // Set quote based on score.  This is for demonstration purposes only and is not intended to reflect a realistic mapping of scores to quotes.
         int quote = 0;
@@ -85,6 +96,7 @@ public class Quote {
 
         QuoteResponse response = new QuoteResponse();
         response.setQuotedAmount(quote);
+        response.setBasis(basis);
         return response;         
     }
 
