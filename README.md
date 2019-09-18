@@ -434,8 +434,8 @@ where
 
 After the deployment completes, use a browser to open the frontend application.
 Use `http://<node IP address>:<nodeport>` where
-* <node IP address> is the external IP address of your node which you can obtain using the command `kubectl get node -o wide`
-* <node port> is the node port assigned to the service which you can obtain using the command `kubectl get svc quote-frontend`
+* `<node IP address>` is the external IP address of your node which you can obtain using the command `kubectl get node -o wide`
+* `<node port>` is the node port assigned to the service which you can obtain using the command `kubectl get svc quote-frontend`
 
 Fill in the form and click the button to submit it.
 You should get a quote from the backend application.
