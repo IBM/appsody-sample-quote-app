@@ -171,6 +171,7 @@ Look at [quote-frontend/test/test.js](quote-frontend/test/test.js) to see the te
 ### 3. Create the backend application and run it locally
 
 The backend application is written in Spring Boot.  Let's initialize an Appsody project that uses the Spring Boot 2 stack.
+Create a directory somewhere outside where you cloned this project and run the `appsody init` command shown below.
 
 ```bash
 $ mkdir quote-backend
