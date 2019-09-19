@@ -347,12 +347,12 @@ spec:
   applicationImage: quote-backend
   <b>pullSecret: default-us-icr-io</b>
   env:
-    - name: dacadoo_url
+    - name: DACADOO_URL
       valueFrom:
         secretKeyRef:
           name: dacadoo-secret
           key: url
-    - name: dacadoo_apikey
+    - name: DACADOO_APIKEY
       valueFrom:
         secretKeyRef:
           name: dacadoo-secret 
