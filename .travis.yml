@@ -17,9 +17,10 @@ install:
 
 script:
  # Initialize frontend project
+ - appsody repo add nodejs-express-v02 https://github.com/appsody/stacks/releases/download/nodejs-express-v0.2.10/incubator-index.yaml
  - mkdir quote-frontend-project
  - cd quote-frontend-project
- - appsody init nodejs-express
+ - appsody init nodejs-express-v02/nodejs-express
  # Use jq to add dependencies to package.json
  - jq -s ".[0] * .[1]" package.json ../ci/package-add.json >package.json.tmp && mv package.json.tmp package.json
  # Copy files from git into the project
