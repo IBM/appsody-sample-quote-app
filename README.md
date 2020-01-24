@@ -63,14 +63,21 @@ git clone https://github.com/IBM/appsody-sample-quote-app
 
 ### 2. Create the frontend application and run it locally
 
-The frontend application is written in Node.js Express.  First let's initialize an Appsody project that uses the Node.js Express stack.
+The frontend application is written in Node.js Express.  First let's initialize an Appsody project that uses the Node.js Express stack. Appsody stack development uses a release process that defines a repo of available stacks. The code written in this pattern to extend the stack template is based on the v0.2 stack. Begin by configuring an additional Appsody repo with a [release](https://github.com/appsody/stacks/releases/tag/nodejs-express-v0.2.10) that includes this stack:
+
+```bash
+$ appsody repo add nodejs-express-v02 https://github.com/appsody/stacks/releases/download/nodejs-express-v0.2.10/incubator-index.yaml
+```
+
 Create a directory somewhere outside where you cloned this project and run the `appsody init` command shown below.
 
 ```bash
 $ mkdir quote-frontend
 $ cd quote-frontend
-$ appsody init nodejs-express
+$ appsody init nodejs-express-v02/nodejs-express
 ```
+
+> The `nodejs-express-v02` qualifier tells appsody to use the repo that was just added with the Node.js Express v0.2 stack.
 
 After `appsody init` completes, list the content of the directory.  You'll see that Appsody has created a starter application for you.
 
