@@ -1,4 +1,10 @@
+<!-- retiring
 [![Build Status](https://travis-ci.org/IBM/appsody-sample-quote-app.svg?branch=master)](https://travis-ci.org/IBM/appsody-sample-quote-app)
+-->
+
+# Warning: This repository is no longer maintained :warning:
+
+> The [Appsody](https://appsody.dev/) project is no longer being maintained as a standalone project. Its core capabilities have become part of [odo 2.0](https://odo.dev/) and later. This repository will not be updated. The repository will be kept available in read-only mode.
 
 # Creating an insurance quote application using Appsody
 
